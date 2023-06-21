@@ -1,0 +1,16 @@
+{
+  "name": "avoid_ifs",
+  "version": "1.0.0",
+  "description": "Code for course about some strategies to avoid using ifs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Kotlirevsky",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.3",
+    "nyc": "^15.1.0"
+  }
+}
