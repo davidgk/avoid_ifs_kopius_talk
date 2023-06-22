@@ -1,14 +1,4 @@
 
-
-class Car {
-    static MAXIMUM_FIRST_GEAR = 30;
-    static MAXIMUM_SECOND_GEAR = 50;
-    static MAXIMUM_THIRD_GEAR = 80;
-    static MAXIMUM_FOURTH_GEAR = 110;
-    static ZERO_SPEED = 0;
-
-}
-
 class Driver {
     static FIRST_GEAR = "First gear";
     static SECOND_GEAR= "Second gear";
@@ -16,21 +6,30 @@ class Driver {
     static FOURTH_GEAR= "Fourth gear";
 
     changeGear(gear) {
-        if (gear === Driver.FIRST_GEAR){
-            return Car.MAXIMUM_FIRST_GEAR;
-        }
-        if (gear === Driver.SECOND_GEAR){
-            return Car.MAXIMUM_SECOND_GEAR;
-        }
-        if (gear === Driver.THIRD_GEAR){
-            return Car.MAXIMUM_THIRD_GEAR;
-        }
-        if (gear === Driver.FOURTH_GEAR){
-            return Car.MAXIMUM_FOURTH_GEAR;
-        }
-        return Car.ZERO_SPEED
+        const car = new Car()
+        return car.move(gear);
     }
 }
+
+class Car {
+    static MAXIMUM_FIRST_GEAR = 20;
+    static MAXIMUM_SECOND_GEAR = 50;
+    static MAXIMUM_THIRD_GEAR = 80;
+    static MAXIMUM_FOURTH_GEAR = 110;
+    static ZERO_SPEED = 0;
+    static moving_scale = {
+        [Driver.FIRST_GEAR]: Car.MAXIMUM_FIRST_GEAR,
+        [Driver.SECOND_GEAR]: Car.MAXIMUM_SECOND_GEAR,
+        [Driver.THIRD_GEAR]: Car.MAXIMUM_THIRD_GEAR,
+        [Driver.FOURTH_GEAR]: Car.MAXIMUM_FOURTH_GEAR,
+    };
+
+    move(gear) {
+        return Car.moving_scale[gear] || Car.ZERO_SPEED
+    }
+}
+
+
 
 function solutionGears (gear) {
     const driver = new Driver()
