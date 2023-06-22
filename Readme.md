@@ -1,7 +1,7 @@
 # What if we start avoiding ifs ?
 
 
-## First Example :
+## First Example (driver-gears):
 We have a car and a driver wants to changes gears
 
 When driver go first gear the car will return 20, as maximun velocity
@@ -10,7 +10,7 @@ When driver go third gear the car will return 80, as maximun velocity
 When driver go fourth gear the car will return 110, as maximun velocity
 When driver go to any other situation will return 0
 
-## Second Example :
+## Second Example (driver-motors):
 We have two drivers with different expertise. They want to test a motor with different kinds of fuel
 
 When the driver is an expert:
