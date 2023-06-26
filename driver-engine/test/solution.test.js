@@ -7,7 +7,7 @@ const { solution }= require("../src/solution");
 
 describe('blank', () =>{
 	function doTest(sut, expected){
-		it(`given ${sut} then ${expected}`, () => expect(solution(sut)).to.equal(expected));
+		it(`given ${sut} then ${expected}`, () => expect(solutionDriverEngines(sut)).to.equal(expected));
 	}
 
 	function doTestError(sut, expected){
