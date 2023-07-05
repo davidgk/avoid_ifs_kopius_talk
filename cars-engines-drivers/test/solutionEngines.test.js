@@ -22,14 +22,11 @@ const { solutionEngines }= require("../src/solution");
 
 describe('Engines and drivers', () =>{
 	function doTest(sut, expected){
-		it(`should the engine perform as  ${expected}% when driver is ${sut.driver} and use as fuel ${sut.fuel}`, () => expect(solutionEngines(sut)).to.equal(expected));
+		it(`should the engine perform as  ${expected}% when driver is ${sut.driverType} and use as fuel ${sut.fuelType}`, () => expect(solutionEngines(sut.driverType, sut.fuelType)).to.equal(expected));
 	}
 
-	function doTestError(sut, expected){
-		it(`given ${sut} then fail with ${expected}`, () => expect(() => solution(sut[0],sut[1])).to.throw(expected));
-	}
 
-	doTest(0, 0);
+	doTest({driverType: '', fuelType: ''}, 0);
 	// doTest(1, 1);
 	// doTest(2, 1);
 	// doTest(3, 2);

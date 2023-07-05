@@ -13,12 +13,8 @@ const { solutionGears }= require("../src/solution");
 // * When driver go to any other situation will return 0
 
 describe('car engines and drivers', () =>{
-	function doTest(sut, expected){
-		it(`should car has maximum speed as ${expected} when driver executes ${sut}`, () => expect(solutionGears(sut)).to.equal(expected));
-	}
-
-	function doTestError(sut, expected){
-		it(`given ${sut} then fail with ${expected}`, () => expect(() => solution(sut[0],sut[1])).to.throw(expected));
+	function doTest(gear, expected){
+		it(`should car has maximum speed as ${expected} when driver executes ${gear}`, () => expect(solutionGears(gear)).to.equal(expected));
 	}
 
 	doTest(0, 0);

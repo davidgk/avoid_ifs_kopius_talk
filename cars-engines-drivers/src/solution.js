@@ -1,12 +1,20 @@
 
-function solutionGears (position) {
+class Car {
+
+}
+
+class Driver {
+
+}
+
+function solutionGears (gear) {
 
 
 }
 
-function solutionEngines (position) {
+function solutionEngines (driverType, fuelType) {
 
 
 }
 
-module.exports = {solutionGears, solutionEngines}
+module.exports = {Driver, Car,  solutionGears, solutionEngines}
