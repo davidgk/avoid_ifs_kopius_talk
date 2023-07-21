@@ -8,8 +8,8 @@ const { solutionGears }= require("../src/solution");
 // * When driver go first gear the car will return 20, as maximum velocity
 // * When driver go second gear the car will return 50, as maximum velocity
 // * When driver go third gear the car will return 80, as maximum velocity
-// * When driver go fourth gear the car will return 110, as maximum velocity
 // * When driver go fourth gear the car will return 100, as maximum velocity
+
 // * When driver go to any other situation will return 0
 
 describe('car engines and drivers', () =>{
