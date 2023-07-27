@@ -2,7 +2,7 @@
 const {
 	expect
 } = require('chai')
-const { solutionGears }= require("../src/solution");
+const { solutionGears, Car}= require("../src/solution");
 // We have a car and a driver wants to changes gears
 
 // * When driver go first gear the car will return 20, as maximum velocity
@@ -17,5 +17,9 @@ describe('car engines and drivers', () =>{
 		it(`should car has maximum speed as ${expected} when driver executes ${gear}`, () => expect(solutionGears(gear)).to.equal(expected));
 	}
 
-	doTest(0, 0);
+	doTest(Car.FIRST_GEAR, 20);
+	doTest(Car.SECOND_GEAR, 50);
+	doTest(Car.THIRD_GEAR, 80);
+	doTest(Car.FOURTH_GEAR, 100);
+	doTest("other", 0);
 })
