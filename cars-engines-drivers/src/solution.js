@@ -4,7 +4,17 @@ class Car {
     static SECOND_GEAR = "second gear" ;
     static THIRD_GEAR = "third gear" ;
     static FOURTH_GEAR = "fourth gear" ;
+    static DEFAULT = "default" ;
 
+    constructor() {
+        this.gearsMapSpeed = {
+            [Car.FIRST_GEAR]: this.getMaxSpeedAtFirstGear,
+            [Car.SECOND_GEAR]: this.getMaxSpeedAtSecondGear,
+            [Car.THIRD_GEAR]: this.getMaxSpeedAtThirdGear,
+            [Car.FOURTH_GEAR]: this.getMaxSpeedAtFourthGear,
+            [Car.DEFAULT]: () => 0,
+        }
+    }
 
 
     getMaxSpeedAtFirstGear(){
@@ -32,19 +42,8 @@ class Driver {
     }
 
     checkMaxSpeedWith(gear) {
-        if ( gear === Car.FIRST_GEAR) {
-            return this.car.getMaxSpeedAtFirstGear();
-        }
-        if ( gear === Car.SECOND_GEAR) {
-          return this.car.getMaxSpeedAtSecondGear();
-        }
-        if ( gear === Car.THIRD_GEAR) {
-            return this.car.getMaxSpeedAtThirdGear();
-        }
-        if ( gear === Car.FOURTH_GEAR) {
-            return this.car.getMaxSpeedAtFourthGear();
-        }
-        return 0;
+        const action = this.car.gearsMapSpeed[gear] || this.car.gearsMapSpeed[Car.DEFAULT]
+        return action()
     }
 }
 
