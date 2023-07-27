@@ -10,8 +10,7 @@ class Car {
     static SEMI_ECO_FUEL ="semi Eco fuel" ;
     static STD_FUEL = "std fuel";
 
-    constructor(fuelType) {
-        this.fuelType = fuelType
+    constructor() {
         this.gearsMapSpeed = {
             [Car.FIRST_GEAR]: this.getMaxSpeedAtFirstGear,
             [Car.SECOND_GEAR]: this.getMaxSpeedAtSecondGear,
@@ -40,16 +39,61 @@ class Car {
         return 100
     }
 
-    isUsingFuel(fuel){
-        return this.fuelType === fuel
+    checkEnginePerformanceWithExpertDriver(){
+        return 30
     }
+
+    checkEnginePerformanceWithStandardDriver(){
+        return 30
+    }
+}
+
+class CarWithEcoFuel extends Car {
+    checkEnginePerformanceWithExpertDriver() {
+        // a bunch of logic
+        return 100
+    }
+
+    checkEnginePerformanceWithStandardDriver(){
+        // a bunch of logic
+        return 80
+    }
+}
+
+class CarSemiEcoFuel extends Car {
+    checkEnginePerformanceWithExpertDriver(){
+        // a bunch of logic
+        return 80
+    }
+    checkEnginePerformanceWithStandardDriver(){
+        // a bunch of logic
+        return 60
+    }
+}
+
+class CarStandardFuel extends Car {
+    checkEnginePerformanceWithExpertDriver(){
+        // a bunch of logic
+        return 60
+    }
+    checkEnginePerformanceWithStandardDriver(){
+        // a bunch of logic
+        return 40
+    }
+}
+
+const carClassFactory = {
+    [Car.ECO_FUEL]: CarWithEcoFuel,
+    [Car.SEMI_ECO_FUEL]: CarSemiEcoFuel,
+    [Car.STD_FUEL]: CarStandardFuel,
+    [Car.DEFAULT]: Car,
 }
 
 class Driver {
     static EXPERT = "expert" ;
     static STANDARD = "standard";
-    constructor(car, driveType = Driver.EXPERT) {
-        this.driveType = driveType
+    static DEFAULT = "default";
+    constructor(car) {
         this.car = car
     }
 
@@ -59,37 +103,28 @@ class Driver {
     }
 
     checkPerformance() {
-        if (this.driveType === Driver.EXPERT){
-            if(this.car.isUsingFuel(Car.ECO_FUEL)){
-                // a bunch of logic
-                return 100
-            }
-            if(this.car.isUsingFuel(Car.SEMI_ECO_FUEL)){
-                // a bunch of logic
-                return 80
-            }
-            if(this.car.isUsingFuel(Car.STD_FUEL)){
-                // a bunch of logic
-                return 60
-            }
-        }
-        if (this.driveType === Driver.STANDARD){
-            if(this.car.isUsingFuel(Car.ECO_FUEL)){
-                // a bunch of logic
-                return 80
-            }
-            if(this.car.isUsingFuel(Car.SEMI_ECO_FUEL)){
-                // a bunch of logic
-                return 60
-            }
-            if(this.car.isUsingFuel(Car.STD_FUEL)){
-                // a bunch of logic
-                return 40
-            }
-        }
         return 30
     }
 }
+
+class ExpertDriver extends Driver {
+    checkPerformance() {
+        return this.car.checkEnginePerformanceWithExpertDriver()
+    }
+}
+
+class StandardDriver extends Driver {
+    checkPerformance() {
+        return this.car.checkEnginePerformanceWithStandardDriver()
+    }
+}
+
+const driverClassDriver = {
+    [Driver.EXPERT]: ExpertDriver,
+    [Driver.STANDARD]: StandardDriver,
+    [Driver.DEFAULT]: Driver,
+}
+
 
 function solutionGears (gear) {
     const driver = new Driver(new Car())
@@ -98,7 +133,9 @@ function solutionGears (gear) {
 }
 
 function solutionEngines (driverType, fuelType) {
-    const driver = new Driver(new Car(fuelType), driverType)
+    const classDriver = driverClassDriver[driverType] || driverClassDriver[Driver.DEFAULT]
+    const classCarr = carClassFactory[fuelType] || carClassFactory[Car.DEFAULT]
+    const driver = new classDriver(new classCarr())
     return driver.checkPerformance()
 }
 
